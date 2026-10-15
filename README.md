@@ -49,9 +49,29 @@ The script installs PyInstaller into the virtualenv if it is missing and
 writes `dist\VideoSlicer.exe` (one file, no console window, "VS" icon and
 file properties). ffmpeg is deliberately left out of the bundle: the
 executable looks for it in `tools\ffmpeg\` next to itself and offers to
-download it. Next to the executable also go `config.json` and `tools\`. To
-distribute, ship the `.exe` with `LICENSE` and `NOTICE`; `scripts\` is
-development tooling only.
+download it. Next to the executable also go `config.json` and `tools\`.
+
+### Release
+
+```bash
+.venv\Scripts\python.exe scripts\build_exe.py --release
+```
+
+also writes `dist\VideoSlicer-<version>-windows-x64.zip` (exe, LICENSE,
+NOTICE, README) and `dist\release-notes-<version>.md`, with the changes taken
+from the most recent section of `CHANGELOG.md` and the SHA-256 of the zip.
+
+```bash
+.venv\Scripts\python.exe scripts\build_exe.py --publish
+```
+
+does all that and then creates the GitHub release `v<version>` on the
+repository of the `origin` remote, with those notes and the zip attached. It
+needs a GitHub token with write access to the repository contents, from the
+`GITHUB_TOKEN` environment variable or typed when asked (never saved). Push
+the commit first: the tag is created on the current branch. Before a new
+release, raise `__version__` in `videoslicer/__init__.py` and add a section
+to `CHANGELOG.md`. `--no-build` reuses the executable already in `dist\`.
 
 ## FFmpeg
 
@@ -156,7 +176,8 @@ average frame rate, so the time/frame correspondence is approximate.
 | `videoslicer/theme.py`, `widgets.py`, `frameless.py` | dark theme, components, frameless window |
 | `videoslicer/tasks.py` | background jobs and delivery to the GUI |
 | `videoslicer/config.py` | settings in `config.json` |
-| `scripts/build_exe.py` | builds the single `VideoSlicer.exe` with PyInstaller |
+| `scripts/build_exe.py` | builds `VideoSlicer.exe`; `--release` zip and notes; `--publish` GitHub release |
+| `CHANGELOG.md` | changes per version, used for the release notes |
 
 ## License
 

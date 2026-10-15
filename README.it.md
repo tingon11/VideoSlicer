@@ -49,9 +49,29 @@ Lo script installa PyInstaller nel virtualenv se manca e scrive
 `dist\VideoSlicer.exe` (un solo file, senza finestra console, icona «VS» e
 proprietà del file). ffmpeg resta volutamente fuori dal bundle: l'eseguibile
 lo cerca in `tools\ffmpeg\` accanto a sé e propone di scaricarlo. Accanto
-all'eseguibile finiscono anche `config.json` e `tools\`. Per distribuire,
-consegna l'`.exe` con `LICENSE` e `NOTICE`; `scripts\` serve solo allo
-sviluppo.
+all'eseguibile finiscono anche `config.json` e `tools\`.
+
+### Release
+
+```bash
+.venv\Scripts\python.exe scripts\build_exe.py --release
+```
+
+scrive anche `dist\VideoSlicer-<versione>-windows-x64.zip` (exe, LICENSE,
+NOTICE, README) e `dist\release-notes-<versione>.md`, con le novità prese
+dalla sezione più recente di `CHANGELOG.md` e l'impronta SHA-256 dello zip.
+
+```bash
+.venv\Scripts\python.exe scripts\build_exe.py --publish
+```
+
+fa tutto questo e poi crea su GitHub la release `v<versione>` sul repository
+del remote `origin`, con quelle note e lo zip allegato. Serve un token GitHub
+con permesso di scrittura sui contenuti del repository, dalla variabile
+d'ambiente `GITHUB_TOKEN` o digitato al momento (non viene mai salvato).
+Prima fai il push del commit: la tag viene creata sul ramo corrente. Per una
+nuova release alza `__version__` in `videoslicer/__init__.py` e aggiungi una
+sezione a `CHANGELOG.md`. `--no-build` riusa l'eseguibile già in `dist\`.
 
 ## FFmpeg
 
@@ -159,7 +179,8 @@ approssimata.
 | `videoslicer/theme.py`, `widgets.py`, `frameless.py` | tema scuro, componenti, finestra senza barra |
 | `videoslicer/tasks.py` | lavori in background e consegna alla GUI |
 | `videoslicer/config.py` | impostazioni in `config.json` |
-| `scripts/build_exe.py` | compila l'eseguibile unico `VideoSlicer.exe` con PyInstaller |
+| `scripts/build_exe.py` | compila `VideoSlicer.exe`; `--release` zip e note; `--publish` release su GitHub |
+| `CHANGELOG.md` | novità per versione, usate per le note di rilascio |
 
 ## Licenza
 
