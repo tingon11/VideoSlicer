@@ -1,0 +1,84 @@
+VideoSlicer
+Copyright (C) 2026 Andrea Cumini <andrea@osintinfo.net>
+https://www.osintinfo.net
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, version 3 of the License, together with the additional
+terms below.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+The full text of the GNU General Public License version 3 is in the file
+LICENSE. It is also available at <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+
+ADDITIONAL TERMS (GNU GPL version 3, section 7)
+===============================================
+
+1. Attribution (section 7(b))
+
+   Every copy of this program, and every work based on it, must preserve:
+
+   (a) the copyright and license notices in the source files, and this
+       NOTICE file;
+
+   (b) the author attribution
+
+           Andrea Cumini - andrea@osintinfo.net - www.osintinfo.net
+
+       displayed in the user interface (the credits line in the status bar
+       at the bottom of the main window and the Credits box) and in the
+       documentation. This attribution is part of the Appropriate Legal
+       Notices of the program.
+
+   The attribution must remain legible. Modified versions may add their own
+   notices next to it, but may not remove, hide or alter it.
+
+2. Modified versions (section 7(c))
+
+   Modified versions must be marked in a reasonable way as different from
+   the original version, and must not misrepresent the origin of the
+   material.
+
+3. Name and logo (section 7(e))
+
+   The name "VideoSlicer", its logo and its "VS" icon (logo.png,
+   videoslicer.ico and the same artwork inside the program's window and
+   executable) identify the original program and its author. The License
+   does not grant any right to use them as a trade name, trademark or
+   service mark: a modified version distributed to others must use a
+   different name and logo. Unmodified copies may keep them.
+
+
+CREDITS
+=======
+
+The interface theme, the window shell and the logo style come from AndrOsint
+and TagFaces, by the same author.
+
+The logo and the icon are set in Panchang, a typeface by Indian Type Foundry
+(ITF), which owns its trademarks and copyright
+<https://www.fontshare.com/fonts/panchang>. They contain outlines and
+images only: the font is not distributed with this program.
+
+
+THIRD-PARTY SOFTWARE
+====================
+
+VideoSlicer does not include FFmpeg. When the user asks for it, the program
+downloads the official Windows build ("release essentials", by Gyan Doshi,
+<https://www.gyan.dev/ffmpeg/builds/>, the build linked from
+<https://ffmpeg.org/download.html>) into the tools/ffmpeg/ folder next to
+it, keeping ffmpeg.exe together with its LICENSE and README files. FFmpeg
+<https://ffmpeg.org> is a separate program under the GNU LGPL v2.1 or later
+(GPL v2 or later when built with GPL components, as that build is); it is
+not part of this program and is run as an external executable. FFmpeg's own
+license and source code are available at <https://ffmpeg.org/legal.html>.
+An ffmpeg already present in the PATH, or the one shipped by the optional
+Python package imageio-ffmpeg (BSD-2-Clause), is used in the same way.
+
+VideoSlicer uses the Python libraries CustomTkinter (MIT) and Pillow
+(MIT-CMU). Each of them remains under its own license.
